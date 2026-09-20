@@ -68,24 +68,28 @@
   .dt-w { background: #5a3e27; }
   .lang-w { background: #a89030; color:#000; }
 
-  /* TIMER STYLING */
-  #timer-container {
-    margin-top: 40px;
+  /* CIRCULAR TIMER */
+  .circle-timer-container {
+    margin-top: 50px;
     text-align: center;
+    color: #fff;
   }
 
-  #timeInput {
+  .time-inputs input {
+    width: 70px;
     padding: 10px;
-    font-size: 16px;
+    margin: 5px;
+    font-size: 18px;
     border-radius: 6px;
     border: none;
-    width: 140px;
     text-align: center;
+    background: #1b1b1b;
+    color: #fff;
   }
 
-  #startBtn {
+  #startCircle, #pauseCircle, #resetCircle {
     padding: 10px 20px;
-    margin-left: 10px;
+    margin: 10px;
     font-size: 16px;
     border: none;
     border-radius: 6px;
@@ -94,11 +98,37 @@
     cursor: pointer;
   }
 
-  #display {
-    margin-top: 20px;
-    font-size: 40px;
+  .circle-wrapper {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin: 20px auto;
+  }
+
+  .circle-svg circle {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+  }
+
+  .circle-svg .bg {
+    stroke: #333;
+  }
+
+  .circle-svg .progress {
+    stroke: #2f5fff;
+    stroke-dasharray: 628;
+    stroke-dashoffset: 628;
+    transition: stroke-dashoffset 0.2s linear;
+  }
+
+  .circle-time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
     font-weight: bold;
-    color: #eaeaea;
   }
 </style>
 </head>
@@ -180,48 +210,96 @@
 
 </div>
 
-<!-- COUNTDOWN TIMER -->
-<div id="timer-container">
-  <h2 style="color:#fff;">Revision Countdown Timer</h2>
+<!-- CIRCULAR COUNTDOWN TIMER -->
+<div class="circle-timer-container">
+  <h2>Revision Countdown Timer</h2>
 
-  <input id="timeInput" type="text" placeholder="Enter time (mm:ss)">
-  <button id="startBtn">Start</button>
+  <div class="time-inputs">
+    <input id="hours" type="number" min="0" placeholder="HH">
+    <input id="minutes" type="number" min="0" max="59" placeholder="MM">
+    <input id="seconds" type="number" min="0" max="59" placeholder="SS">
+  </div>
 
-  <div id="display">00:00</div>
+  <button id="startCircle">Start</button>
+
+  <div class="circle-wrapper">
+    <svg class="circle-svg" width="240" height="240">
+      <circle class="bg" cx="120" cy="120" r="100"></circle>
+      <circle class="progress" cx="120" cy="120" r="100"></circle>
+    </svg>
+    <div class="circle-time" id="circleTime">00:00:00</div>
+  </div>
+
+  <div class="circle-controls">
+    <button id="pauseCircle">Pause</button>
+    <button id="resetCircle">Reset</button>
+  </div>
 </div>
 
 <script>
-  const input = document.getElementById("timeInput");
-  const display = document.getElementById("display");
-  const startBtn = document.getElementById("startBtn");
-  let interval;
+  let totalTime = 0;
+  let remaining = 0;
+  let interval = null;
+  let paused = false;
 
-  function format(t) {
-    const m = Math.floor(t / 60);
+  const progressCircle = document.querySelector(".progress");
+  const circleTime = document.getElementById("circleTime");
+
+  function formatTime(t) {
+    const h = Math.floor(t / 3600);
+    const m = Math.floor((t % 3600) / 60);
     const s = t % 60;
-    return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   }
 
-  startBtn.onclick = () => {
+  function updateCircle() {
+    const percent = remaining / totalTime;
+    const offset = 628 - (628 * percent);
+    progressCircle.style.strokeDashoffset = offset;
+    circleTime.textContent = formatTime(remaining);
+  }
+
+  document.getElementById("startCircle").onclick = () => {
+    const h = parseInt(document.getElementById("hours").value) || 0;
+    const m = parseInt(document.getElementById("minutes").value) || 0;
+    const s = parseInt(document.getElementById("seconds").value) || 0;
+
+    totalTime = h * 3600 + m * 60 + s;
+    remaining = totalTime;
+
+    if (totalTime <= 0) return;
+
     clearInterval(interval);
-
-    const parts = input.value.split(":");
-    if (parts.length !== 2) return;
-
-    let total = parseInt(parts[0]) * 60 + parseInt(parts[1]);
-    if (isNaN(total) || total <= 0) return;
-
-    display.textContent = format(total);
+    paused = false;
 
     interval = setInterval(() => {
-      total--;
-      display.textContent = format(total);
+      if (!paused) {
+        remaining--;
+        updateCircle();
 
-      if (total <= 0) {
-        clearInterval(interval);
-        display.textContent = "TIME'S UP!";
+        if (remaining <= 0) {
+          clearInterval(interval);
+          circleTime.textContent = "TIME'S UP!";
+        }
       }
     }, 1000);
+
+    updateCircle();
+  };
+
+  document.getElementById("pauseCircle").onclick = () => {
+    paused = !paused;
+    document.getElementById("pauseCircle").textContent = paused ? "Resume" : "Pause";
+  };
+
+  document.getElementById("resetCircle").onclick = () => {
+    clearInterval(interval);
+    remaining = 0;
+    totalTime = 0;
+    progressCircle.style.strokeDashoffset = 628;
+    circleTime.textContent = "00:00:00";
+    paused = false;
+    document.getElementById("pauseCircle").textContent = "Pause";
   };
 </script>
 
