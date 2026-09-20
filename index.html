@@ -34,27 +34,26 @@
 
   td {
     border: 1px solid #2d2d2d;
-    padding: 28px; /* taller blocks */
+    padding: 32px; /* tall blocks */
     text-align: center;
     font-size: 15px;
     font-weight: bold;
     color: #fff;
   }
 
-  /* SUBJECT COLOURS */
-  .math { background: #1e5fff; }          /* blue */
-  .lit { background: #e6c84a; color:#000;} /* yellow shade 1 */
-  .lang { background: #d1b23a; color:#000;}/* yellow shade 2 */
-  .dt { background: #6b4b2f; }            /* brown */
-  .cs { background: #bfc2c7; color:#000;} /* grey/silver */
-  .chem { background: #3a8f3a; }          /* green */
-  .bio { background: #6fb7ff; color:#000;}/* light blue */
-  .phys { background: #ffb36b; color:#000;}/* light orange */
+  /* MAIN SUBJECT COLOURS (muted, clean) */
+  .math { background: #2f5fff; }          /* blue */
+  .cs { background: #b5b8bd; color:#000;} /* grey/silver */
   .geo { background: #1f4f1f; }           /* dark green */
+  .chem { background: #3a8f3a; }          /* green */
+  .lit { background: #e6c84a; color:#000;}/* muted yellow */
 
-  /* WEEKEND MUTED */
-  .sat { background: #2a2626 !important; }
-  .sun { background: #262a26 !important; }
+  /* WEEKEND DARKER VARIANTS */
+  .math-w { background: #2448c7; }
+  .cs-w { background: #9fa2a6; color:#000; }
+  .geo-w { background: #183d18; }
+  .chem-w { background: #2f6f2f; }
+  .lit-w { background: #c9b03f; color:#000; }
 </style>
 </head>
 <body>
@@ -73,53 +72,53 @@
   </tr>
 
   <tr>
-    <td class="bio">Biology</td>
     <td class="math">Maths</td>
-    <td class="span phys">Spanish</td>
     <td class="cs">Computer Science</td>
-    <td class="bio">Biology</td>
-    <td class="math sat">Maths</td>
-    <td class="math sun">Maths</td>
+    <td class="geo">Geography</td>
+    <td class="chem">Chemistry</td>
+    <td class="lit">English Lit</td>
+    <td class="math-w">Maths</td>
+    <td class="math-w">Maths</td>
   </tr>
 
   <tr>
     <td class="chem">Chemistry</td>
     <td class="geo">Geography</td>
-    <td class="phys">Physics</td>
-    <td class="dt">DT</td>
-    <td class="chem">Chemistry</td>
-    <td class="phys sat">Physics</td>
-    <td class="phys sun">Physics</td>
-  </tr>
-
-  <tr>
-    <td class="phys">Physics</td>
-    <td class="lang">English Lang</td>
     <td class="math">Maths</td>
-    <td class="lang">English Lang</td>
-    <td class="phys">Physics</td>
-    <td class="lit sat">English Lit</td>
-    <td class="lit sun">English Lit</td>
+    <td class="lit">English Lit</td>
+    <td class="cs">Computer Science</td>
+    <td class="chem-w">Chemistry</td>
+    <td class="chem-w">Chemistry</td>
   </tr>
 
   <tr>
     <td class="lit">English Lit</td>
-    <td class="bio">Biology</td>
-    <td class="lit">English Lit</td>
-    <td class="span phys">Spanish</td>
     <td class="math">Maths</td>
-    <td class="cs sat">Computer Science</td>
-    <td class="span phys sun">Spanish</td>
+    <td class="cs">Computer Science</td>
+    <td class="geo">Geography</td>
+    <td class="chem">Chemistry</td>
+    <td class="lit-w">English Lit</td>
+    <td class="lit-w">English Lit</td>
   </tr>
 
   <tr>
-    <td class="lang">English Lang</td>
+    <td class="geo">Geography</td>
+    <td class="lit">English Lit</td>
     <td class="chem">Chemistry</td>
+    <td class="math">Maths</td>
+    <td class="cs">Computer Science</td>
+    <td class="geo-w">Geography</td>
+    <td class="geo-w">Geography</td>
+  </tr>
+
+  <tr>
+    <td class="cs">Computer Science</td>
+    <td class="chem">Chemistry</td>
+    <td class="lit">English Lit</td>
     <td class="geo">Geography</td>
     <td class="math">Maths</td>
-    <td class="lit">English Lit</td>
-    <td class="dt sat">DT</td>
-    <td class="dt sun">DT</td>
+    <td class="cs-w">Computer Science</td>
+    <td class="cs-w">Computer Science</td>
   </tr>
 
 </table>
