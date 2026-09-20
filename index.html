@@ -67,6 +67,39 @@
   .span-w { background: #9f3f3f; }
   .dt-w { background: #5a3e27; }
   .lang-w { background: #a89030; color:#000; }
+
+  /* TIMER STYLING */
+  #timer-container {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  #timeInput {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    width: 140px;
+    text-align: center;
+  }
+
+  #startBtn {
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background: #2f5fff;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #display {
+    margin-top: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #eaeaea;
+  }
 </style>
 </head>
 <body>
@@ -103,7 +136,6 @@
     <div class="slot math">Maths</div>
     <div class="slot lit">English Lit</div>
     <div class="slot bio">Biology</div>
-    
   </div>
 
   <!-- THURSDAY -->
@@ -124,7 +156,6 @@
     <div class="slot phys">Physics</div>
     <div class="slot cs">Computer Science</div>
     <div class="slot lit">English Lit</div>
-    
   </div>
 
   <!-- SATURDAY -->
@@ -148,6 +179,51 @@
   </div>
 
 </div>
+
+<!-- COUNTDOWN TIMER -->
+<div id="timer-container">
+  <h2 style="color:#fff;">Revision Countdown Timer</h2>
+
+  <input id="timeInput" type="text" placeholder="Enter time (mm:ss)">
+  <button id="startBtn">Start</button>
+
+  <div id="display">00:00</div>
+</div>
+
+<script>
+  const input = document.getElementById("timeInput");
+  const display = document.getElementById("display");
+  const startBtn = document.getElementById("startBtn");
+  let interval;
+
+  function format(t) {
+    const m = Math.floor(t / 60);
+    const s = t % 60;
+    return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }
+
+  startBtn.onclick = () => {
+    clearInterval(interval);
+
+    const parts = input.value.split(":");
+    if (parts.length !== 2) return;
+
+    let total = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+    if (isNaN(total) || total <= 0) return;
+
+    display.textContent = format(total);
+
+    interval = setInterval(() => {
+      total--;
+      display.textContent = format(total);
+
+      if (total <= 0) {
+        clearInterval(interval);
+        display.textContent = "TIME'S UP!";
+      }
+    }, 1000);
+  };
+</script>
 
 </body>
 </html>
