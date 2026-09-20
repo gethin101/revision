@@ -6,8 +6,8 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    background: #121212;
-    color: #e6e6e6;
+    background: #111;
+    color: #eee;
     margin: 0;
     padding: 20px;
   }
@@ -15,7 +15,7 @@
   h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #ffffff;
+    color: #fff;
   }
 
   table {
@@ -24,27 +24,36 @@
   }
 
   th {
-    background: #1f1f1f;
-    padding: 12px;
+    background: #1c1c1c;
+    padding: 14px;
     border: 1px solid #333;
     font-size: 16px;
+    color: #fff;
   }
 
   td {
     border: 1px solid #333;
-    padding: 10px;
+    padding: 18px;
     text-align: center;
-    background: #1a1a1a;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
   }
 
-  .sat {
-    background: #2a1a1a;
-  }
+  /* Colour-coded subject blocks */
+  .bio { background: #4caf50; }
+  .chem { background: #2196f3; }
+  .phys { background: #9c27b0; }
+  .lit { background: #ff7043; }
+  .lang { background: #ffca28; color: #000; }
+  .geo { background: #26a69a; }
+  .cs { background: #42a5f5; }
+  .span { background: #ef5350; }
+  .dt { background: #8d6e63; }
+  .math { background: #ab47bc; }
 
-  .sun {
-    background: #1a2a1a;
-  }
+  .sat { background: #2a1a1a; }
+  .sun { background: #1a2a1a; }
 </style>
 </head>
 <body>
@@ -63,53 +72,53 @@
   </tr>
 
   <tr>
-    <td>Biology</td>
-    <td>Maths</td>
-    <td>Spanish</td>
-    <td>Computer Science</td>
-    <td>Biology</td>
-    <td class="sat">Maths</td>
-    <td class="sun">Maths</td>
+    <td class="bio">Biology</td>
+    <td class="math">Maths</td>
+    <td class="span">Spanish</td>
+    <td class="cs">Computer Science</td>
+    <td class="bio">Biology</td>
+    <td class="math sat">Maths</td>
+    <td class="math sun">Maths</td>
   </tr>
 
   <tr>
-    <td>Chemistry</td>
-    <td>Geography</td>
-    <td>Physics</td>
-    <td>DT</td>
-    <td>Chemistry</td>
-    <td class="sat">Science Mix</td>
-    <td class="sun">Science Review</td>
+    <td class="chem">Chemistry</td>
+    <td class="geo">Geography</td>
+    <td class="phys">Physics</td>
+    <td class="dt">DT</td>
+    <td class="chem">Chemistry</td>
+    <td class="phys sat">Physics</td>
+    <td class="phys sun">Physics</td>
   </tr>
 
   <tr>
-    <td>Physics</td>
-    <td>English Lang</td>
-    <td>Maths</td>
-    <td>English Lang</td>
-    <td>Physics</td>
-    <td class="sat">English Lit</td>
-    <td class="sun">English Lit</td>
+    <td class="phys">Physics</td>
+    <td class="lang">English Lang</td>
+    <td class="math">Maths</td>
+    <td class="lang">English Lang</td>
+    <td class="phys">Physics</td>
+    <td class="lit sat">English Lit</td>
+    <td class="lit sun">English Lit</td>
   </tr>
 
   <tr>
-    <td>English Lit</td>
-    <td>Biology</td>
-    <td>English Lit</td>
-    <td>Spanish</td>
-    <td>Maths</td>
-    <td class="sat">Computer Science</td>
-    <td class="sun">Spanish</td>
+    <td class="lit">English Lit</td>
+    <td class="bio">Biology</td>
+    <td class="lit">English Lit</td>
+    <td class="span">Spanish</td>
+    <td class="math">Maths</td>
+    <td class="cs sat">Computer Science</td>
+    <td class="span sun">Spanish</td>
   </tr>
 
   <tr>
-    <td>English Lang</td>
-    <td>Chemistry</td>
-    <td>Geography</td>
-    <td>Maths</td>
-    <td>English Lit</td>
-    <td class="sat">DT</td>
-    <td class="sun">Light Review</td>
+    <td class="lang">English Lang</td>
+    <td class="chem">Chemistry</td>
+    <td class="geo">Geography</td>
+    <td class="math">Maths</td>
+    <td class="lit">English Lit</td>
+    <td class="dt sat">DT</td>
+    <td class="dt sun">DT</td>
   </tr>
 
 </table>
