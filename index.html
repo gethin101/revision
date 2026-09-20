@@ -6,7 +6,7 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    background: #0f0f0f;
+    background: #0d0d0d;
     color: #eaeaea;
     margin: 0;
     padding: 20px;
@@ -21,41 +21,40 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* makes columns narrower */
+    table-layout: fixed; /* keeps columns narrow */
   }
 
   th {
     background: #1b1b1b;
-    padding: 14px;
+    padding: 12px;
     border: 1px solid #2d2d2d;
-    font-size: 16px;
+    font-size: 15px;
     color: #fff;
   }
 
   td {
     border: 1px solid #2d2d2d;
-    padding: 22px; /* thicker blocks */
+    padding: 28px; /* taller blocks */
     text-align: center;
     font-size: 15px;
     font-weight: bold;
     color: #fff;
   }
 
-  /* Colour-coded subject blocks (muted but distinct) */
-  .bio { background: #3f6f4f; }
-  .chem { background: #345c7a; }
-  .phys { background: #5a3a6f; }
-  .lit { background: #7a4a3a; }
-  .lang { background: #7a6a3a; }
-  .geo { background: #3a6f6a; }
-  .cs { background: #3a4f7a; }
-  .span { background: #7a3a3a; }
-  .dt { background: #5a4a3a; }
-  .math { background: #6a3a7a; }
+  /* SUBJECT COLOURS */
+  .math { background: #1e5fff; }          /* blue */
+  .lit { background: #e6c84a; color:#000;} /* yellow shade 1 */
+  .lang { background: #d1b23a; color:#000;}/* yellow shade 2 */
+  .dt { background: #6b4b2f; }            /* brown */
+  .cs { background: #bfc2c7; color:#000;} /* grey/silver */
+  .chem { background: #3a8f3a; }          /* green */
+  .bio { background: #6fb7ff; color:#000;}/* light blue */
+  .phys { background: #ffb36b; color:#000;}/* light orange */
+  .geo { background: #1f4f1f; }           /* dark green */
 
-  /* Muted weekend colours inspired by your screenshot */
-  .sat { background: #2a2424 !important; }
-  .sun { background: #242a24 !important; }
+  /* WEEKEND MUTED */
+  .sat { background: #2a2626 !important; }
+  .sun { background: #262a26 !important; }
 </style>
 </head>
 <body>
@@ -76,7 +75,7 @@
   <tr>
     <td class="bio">Biology</td>
     <td class="math">Maths</td>
-    <td class="span">Spanish</td>
+    <td class="span phys">Spanish</td>
     <td class="cs">Computer Science</td>
     <td class="bio">Biology</td>
     <td class="math sat">Maths</td>
@@ -107,10 +106,10 @@
     <td class="lit">English Lit</td>
     <td class="bio">Biology</td>
     <td class="lit">English Lit</td>
-    <td class="span">Spanish</td>
+    <td class="span phys">Spanish</td>
     <td class="math">Maths</td>
     <td class="cs sat">Computer Science</td>
-    <td class="span sun">Spanish</td>
+    <td class="span phys sun">Spanish</td>
   </tr>
 
   <tr>
