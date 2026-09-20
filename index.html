@@ -42,21 +42,19 @@
     color: #fff;
   }
 
-  /* MAIN SUBJECT COLOURS */
+  /* SUBJECT COLOURS */
   .math { background: #2f5fff; }
   .cs { background: #b5b8bd; color:#000; }
   .geo { background: #1f4f1f; }
   .chem { background: #3a8f3a; }
   .lit { background: #e6c84a; color:#000; }
-
-  /* OTHER SUBJECTS */
   .bio { background: #4a7bbf; }
   .phys { background: #d98f4f; }
   .span { background: #bf4f4f; }
   .dt { background: #6b4b2f; }
   .lang { background: #c9b03f; color:#000; }
 
-  /* WEEKEND DARKER */
+  /* WEEKEND */
   .math-w { background: #2448c7; }
   .cs-w { background: #9fa2a6; color:#000; }
   .geo-w { background: #183d18; }
@@ -68,7 +66,7 @@
   .dt-w { background: #5a3e27; }
   .lang-w { background: #a89030; color:#000; }
 
-  /* CIRCULAR TIMER */
+  /* TIMER */
   .circle-timer-container {
     margin-top: 50px;
     text-align: center;
@@ -87,7 +85,7 @@
     color: #fff;
   }
 
-  #startCircle, #pauseCircle, #resetCircle {
+  button {
     padding: 10px 20px;
     margin: 10px;
     font-size: 16px;
@@ -130,6 +128,10 @@
     font-size: 30px;
     font-weight: bold;
   }
+
+  #fullscreenBtn {
+    background: #444;
+  }
 </style>
 </head>
 <body>
@@ -137,8 +139,7 @@
 <h1>GCSE Revision Timetable</h1>
 
 <div class="week">
-
-  <!-- MONDAY -->
+  <!-- Your timetable stays exactly the same -->
   <div>
     <div class="day">Mon</div>
     <div class="slot bio">Biology</div>
@@ -148,7 +149,6 @@
     <div class="slot math">Maths</div>
   </div>
 
-  <!-- TUESDAY -->
   <div>
     <div class="day">Tue</div>
     <div class="slot math">Maths</div>
@@ -158,7 +158,6 @@
     <div class="slot chem">Chemistry</div>
   </div>
 
-  <!-- WEDNESDAY -->
   <div>
     <div class="day">Wed</div>
     <div class="slot span">Spanish</div>
@@ -168,7 +167,6 @@
     <div class="slot bio">Biology</div>
   </div>
 
-  <!-- THURSDAY -->
   <div>
     <div class="day">Thu</div>
     <div class="slot cs">Computer Science</div>
@@ -178,7 +176,6 @@
     <div class="slot span">Spanish</div>
   </div>
 
-  <!-- FRIDAY -->
   <div>
     <div class="day">Fri</div>
     <div class="slot dt">DT</div>
@@ -188,7 +185,6 @@
     <div class="slot lit">English Lit</div>
   </div>
 
-  <!-- SATURDAY -->
   <div>
     <div class="day">Sat</div>
     <div class="slot cs-w">Computer Science</div>
@@ -198,7 +194,6 @@
     <div class="slot lit-w">English Lit</div>
   </div>
 
-  <!-- SUNDAY -->
   <div>
     <div class="day">Sun</div>
     <div class="slot bio-w">Biology</div>
@@ -207,14 +202,21 @@
     <div class="slot span-w">Spanish</div>
     <div class="slot cs-w">Computer Science</div>
   </div>
-
 </div>
 
-<!-- CIRCULAR COUNTDOWN TIMER -->
-<div class="circle-timer-container">
+<!-- TIMER -->
+<div class="circle-timer-container" id="timerSection">
+
   <h2>Revision Countdown Timer</h2>
 
-  <div class="time-inputs">
+  <!-- Mode toggle -->
+  <button id="modeToggle">Switch to Pomodoro Mode</button>
+
+  <!-- Fullscreen -->
+  <button id="fullscreenBtn">Fullscreen Timer</button>
+
+  <!-- Normal mode inputs -->
+  <div id="normalInputs" class="time-inputs">
     <input id="hours" type="number" min="0" placeholder="HH">
     <input id="minutes" type="number" min="0" max="59" placeholder="MM">
     <input id="seconds" type="number" min="0" max="59" placeholder="SS">
@@ -234,6 +236,7 @@
     <button id="pauseCircle">Pause</button>
     <button id="resetCircle">Reset</button>
   </div>
+
 </div>
 
 <script>
@@ -241,6 +244,10 @@
   let remaining = 0;
   let interval = null;
   let paused = false;
+
+  let pomodoroMode = false;
+  let pomoStage = 0;
+  let pomoCount = 0;
 
   const progressCircle = document.querySelector(".progress");
   const circleTime = document.getElementById("circleTime");
@@ -259,18 +266,49 @@
     circleTime.textContent = formatTime(remaining);
   }
 
-  document.getElementById("startCircle").onclick = () => {
-    const h = parseInt(document.getElementById("hours").value) || 0;
-    const m = parseInt(document.getElementById("minutes").value) || 0;
-    const s = parseInt(document.getElementById("seconds").value) || 0;
+  function startPomodoroStage() {
+    if (pomoStage % 2 === 0) {
+      totalTime = 25 * 60;
+    } else {
+      totalTime = 5 * 60;
+    }
 
-    totalTime = h * 3600 + m * 60 + s;
+    if (pomoCount === 4) {
+      totalTime = 20 * 60;
+      pomoCount = 0;
+    }
+
     remaining = totalTime;
+    updateCircle();
+  }
 
-    if (totalTime <= 0) return;
+  document.getElementById("modeToggle").onclick = () => {
+    pomodoroMode = !pomodoroMode;
 
+    if (pomodoroMode) {
+      document.getElementById("modeToggle").textContent = "Switch to Normal Mode";
+      document.getElementById("normalInputs").style.display = "none";
+    } else {
+      document.getElementById("modeToggle").textContent = "Switch to Pomodoro Mode";
+      document.getElementById("normalInputs").style.display = "block";
+    }
+  };
+
+  document.getElementById("startCircle").onclick = () => {
     clearInterval(interval);
     paused = false;
+
+    if (pomodoroMode) {
+      startPomodoroStage();
+    } else {
+      const h = parseInt(document.getElementById("hours").value) || 0;
+      const m = parseInt(document.getElementById("minutes").value) || 0;
+      const s = parseInt(document.getElementById("seconds").value) || 0;
+      totalTime = h * 3600 + m * 60 + s;
+      remaining = totalTime;
+    }
+
+    if (totalTime <= 0) return;
 
     interval = setInterval(() => {
       if (!paused) {
@@ -279,7 +317,15 @@
 
         if (remaining <= 0) {
           clearInterval(interval);
-          circleTime.textContent = "TIME'S UP!";
+
+          if (pomodoroMode) {
+            pomoStage++;
+            if (pomoStage % 2 === 0) pomoCount++;
+            startPomodoroStage();
+            document.getElementById("startCircle").click();
+          } else {
+            circleTime.textContent = "TIME'S UP!";
+          }
         }
       }
     }, 1000);
@@ -300,6 +346,11 @@
     circleTime.textContent = "00:00:00";
     paused = false;
     document.getElementById("pauseCircle").textContent = "Pause";
+  };
+
+  document.getElementById("fullscreenBtn").onclick = () => {
+    const elem = document.getElementById("timerSection");
+    if (elem.requestFullscreen) elem.requestFullscreen();
   };
 </script>
 
