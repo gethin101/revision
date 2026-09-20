@@ -6,8 +6,8 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    background: #111;
-    color: #eee;
+    background: #0f0f0f;
+    color: #eaeaea;
     margin: 0;
     padding: 20px;
   }
@@ -21,39 +21,41 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* makes columns narrower */
   }
 
   th {
-    background: #1c1c1c;
+    background: #1b1b1b;
     padding: 14px;
-    border: 1px solid #333;
+    border: 1px solid #2d2d2d;
     font-size: 16px;
     color: #fff;
   }
 
   td {
-    border: 1px solid #333;
-    padding: 18px;
+    border: 1px solid #2d2d2d;
+    padding: 22px; /* thicker blocks */
     text-align: center;
     font-size: 15px;
     font-weight: bold;
     color: #fff;
   }
 
-  /* Colour-coded subject blocks */
-  .bio { background: #4caf50; }
-  .chem { background: #2196f3; }
-  .phys { background: #9c27b0; }
-  .lit { background: #ff7043; }
-  .lang { background: #ffca28; color: #000; }
-  .geo { background: #26a69a; }
-  .cs { background: #42a5f5; }
-  .span { background: #ef5350; }
-  .dt { background: #8d6e63; }
-  .math { background: #ab47bc; }
+  /* Colour-coded subject blocks (muted but distinct) */
+  .bio { background: #3f6f4f; }
+  .chem { background: #345c7a; }
+  .phys { background: #5a3a6f; }
+  .lit { background: #7a4a3a; }
+  .lang { background: #7a6a3a; }
+  .geo { background: #3a6f6a; }
+  .cs { background: #3a4f7a; }
+  .span { background: #7a3a3a; }
+  .dt { background: #5a4a3a; }
+  .math { background: #6a3a7a; }
 
-  .sat { background: #2a1a1a; }
-  .sun { background: #1a2a1a; }
+  /* Muted weekend colours inspired by your screenshot */
+  .sat { background: #2a2424 !important; }
+  .sun { background: #242a24 !important; }
 </style>
 </head>
 <body>
@@ -62,13 +64,13 @@
 
 <table>
   <tr>
-    <th>Monday</th>
-    <th>Tuesday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
-    <th class="sat">Saturday</th>
-    <th class="sun">Sunday</th>
+    <th>Mon</th>
+    <th>Tue</th>
+    <th>Wed</th>
+    <th>Thu</th>
+    <th>Fri</th>
+    <th>Sat</th>
+    <th>Sun</th>
   </tr>
 
   <tr>
