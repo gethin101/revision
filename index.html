@@ -18,24 +18,25 @@
     color: #fff;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+  .week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
   }
 
-  th {
+  .day {
     background: #1b1b1b;
-    padding: 12px;
     border: 1px solid #2d2d2d;
-    font-size: 15px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
     color: #fff;
   }
 
-  td {
-    border: 1px solid #2d2d2d;
-    padding: 34px;
-    text-align: center;
+  .slot {
+    margin-top: 8px;
+    padding: 26px;
+    border-radius: 6px;
     font-size: 15px;
     font-weight: bold;
     color: #fff;
@@ -55,13 +56,12 @@
   .dt { background: #6b4b2f; }
   .lang { background: #c9b03f; color:#000; }
 
-  /* WEEKEND DARKER VARIANTS */
+  /* WEEKEND DARKER */
   .math-w { background: #2448c7; }
   .cs-w { background: #9fa2a6; color:#000; }
   .geo-w { background: #183d18; }
   .chem-w { background: #2f6f2f; }
   .lit-w { background: #b89e35; color:#000; }
-
   .bio-w { background: #3a5f8f; }
   .phys-w { background: #b3743f; }
   .span-w { background: #9f3f3f; }
@@ -73,73 +73,80 @@
 
 <h1>GCSE Revision Timetable</h1>
 
-<table>
-  <tr>
-    <th>Mon</th>
-    <th>Tue</th>
-    <th>Wed</th>
-    <th>Thu</th>
-    <th>Fri</th>
-    <th>Sat</th>
-    <th>Sun</th>
-  </tr>
+<div class="week">
 
-  <!-- ROW 1 -->
-  <tr>
-    <td class="bio">Biology</td>
-    <td class="math">Maths</td>
-    <td class="span">Spanish</td>
-    <td class="cs">Computer Science</td>
-    <td class="chem">Chemistry</td>
-    <td class="chem-w">Chemistry</td>
-    <td class="geo-w">Geography</td>
-  </tr>
+  <!-- MONDAY -->
+  <div>
+    <div class="day">Mon</div>
+    <div class="slot bio">Biology</div>
+    <div class="slot chem">Chemistry</div>
+    <div class="slot phys">Physics</div>
+    <div class="slot lit">English Lit</div>
+    <div class="slot math">Maths</div>
+  </div>
 
-  <!-- ROW 2 -->
-  <tr>
-    <td class="chem">Chemistry</td>
-    <td class="geo">Geography</td>
-    <td class="phys">Physics</td>
-    <td class="dt">DT</td>
-    <td class="phys">Physics</td>
-    <td class="math-w">Maths</td>
-    <td class="phys-w">Physics</td>
-  </tr>
+  <!-- TUESDAY -->
+  <div>
+    <div class="day">Tue</div>
+    <div class="slot math">Maths</div>
+    <div class="slot geo">Geography</div>
+    <div class="slot cs">Computer Science</div>
+    <div class="slot lang">English Lang</div>
+    <div class="slot chem">Chemistry</div>
+  </div>
 
-  <!-- ROW 3 -->
-  <tr>
-    <td class="phys">Physics</td>
-    <td class="cs">Computer Science</td> <!-- moved from Friday -->
-    <td class="math">Maths</td>
-    <td class="lang">English Lang</td>
-    <td class="cs">Computer Science</td>
-    <td class="cs-w">Computer Science</td>
-    <td class="lit-w">English Lit</td>
-  </tr>
+  <!-- WEDNESDAY -->
+  <div>
+    <div class="day">Wed</div>
+    <div class="slot span">Spanish</div>
+    <div class="slot phys">Physics</div>
+    <div class="slot math">Maths</div>
+    <div class="slot lit">English Lit</div>
+    <div class="slot geo">Geography</div>
+  </div>
 
-  <!-- ROW 4 -->
-  <tr>
-    <td class="lit">English Lit</td>
-    <td class="bio">Biology</td>
-    <td class="lit">English Lit</td>
-    <td class="span">Spanish</td>
-    <td class="math">Maths</td>
-    <td class="span-w">Spanish</td>
-    <td class="dt-w">DT</td>
-  </tr>
+  <!-- THURSDAY -->
+  <div>
+    <div class="day">Thu</div>
+    <div class="slot cs">Computer Science</div>
+    <div class="slot dt">DT</div>
+    <div class="slot lang">English Lang</div>
+    <div class="slot math">Maths</div>
+    <div class="slot span">Spanish</div>
+  </div>
 
-  <!-- ROW 5 -->
-  <tr>
-    <td class="lang">English Lang</td>
-    <td class="chem">Chemistry</td>
-    <td class="geo">Geography</td>
-    <td class="math">Maths</td>
-    <td class="lit">English Lit</td>
-    <td class="bio-w">Biology</td>
-    <td class="cs-w">Computer Science</td>
-  </tr>
+  <!-- FRIDAY -->
+  <div>
+    <div class="day">Fri</div>
+    <div class="slot chem">Chemistry</div>
+    <div class="slot math">Maths</div>
+    <div class="slot phys">Physics</div>
+    <div class="slot cs">Computer Science</div>
+    <div class="slot lit">English Lit</div>
+    
+  </div>
 
-</table>
+  <!-- SATURDAY -->
+  <div>
+    <div class="day">Sat</div>
+    <div class="slot cs-w">Computer Science</div>
+    <div class="slot math-w">Maths</div>
+    <div class="slot chem-w">Chemistry</div>
+    <div class="slot geo-w">Geography</div>
+    <div class="slot lit-w">English Lit</div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div>
+    <div class="day">Sun</div>
+    <div class="slot bio-w">Biology</div>
+    <div class="slot phys-w">Physics</div>
+    <div class="slot dt-w">DT</div>
+    <div class="slot span-w">Spanish</div>
+    <div class="slot cs-w">Computer Science</div>
+  </div>
+
+</div>
 
 </body>
 </html>
