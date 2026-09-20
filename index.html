@@ -124,19 +124,8 @@
     transition: all 0.3s ease;
   }
 
-  /* Bigger circle in fullscreen */
-  .fullscreen .circle-wrapper {
-    width: 420px;
-    height: 420px;
-  }
-
   .circle-svg {
     transition: all 0.3s ease;
-  }
-
-  .fullscreen .circle-svg {
-    width: 420px;
-    height: 420px;
   }
 
   .circle-svg circle {
@@ -166,20 +155,38 @@
     transition: font-size 0.3s ease;
   }
 
-  .fullscreen .circle-time {
-    font-size: 60px;
-  }
-
-  /* Hide timetable in fullscreen */
+  /* --- FULLSCREEN MODE FIXED --- */
   .fullscreen #timetable {
     display: none;
   }
 
-  /* Center timer fullscreen */
-  .fullscreen .circle-timer-container {
-    margin-top: 0;
-    padding-top: 40px;
+  .fullscreen {
+    padding: 0;
+    margin: 0;
   }
+
+  .fullscreen #timerSection {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fullscreen .circle-wrapper {
+    width: 420px;
+    height: 420px;
+  }
+
+  .fullscreen .circle-svg {
+    width: 420px;
+    height: 420px;
+  }
+
+  .fullscreen .circle-time {
+    font-size: 60px;
+  }
+
 </style>
 </head>
 <body>
